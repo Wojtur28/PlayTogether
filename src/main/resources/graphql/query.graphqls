@@ -1,0 +1,6 @@
+type Query {
+    getGame(id: ID!): Game!
+    getGames: [Game!]!
+
+    getUser(id: ID!): User
+}

@@ -1,0 +1,17 @@
+type User {
+    id: ID!
+    username: String!
+    email: String!
+}
+
+input CreateUser {
+    username: String!
+    email: String!
+    gender: Gender!
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    OTHER
+}
