@@ -1,7 +1,6 @@
 package org.example.playtogether.core.entities.game;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,7 +19,11 @@ public class GameEntity extends BaseEntity {
 
     private String name;
 
-    private Set<GameCategory> categories;
+    @ElementCollection(targetClass = GameCategory.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "game_categories", joinColumns = @JoinColumn(name = "game_id"))
+    @Column(name = "game_categories", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Set<GameCategory> gameCategories;
 
     private int onlineGamers;
 
@@ -29,10 +32,10 @@ public class GameEntity extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Game{" +
-                "name='" + name + '\'' +
-                ", categories=" + categories +
-                ", onlineGamers=" + onlineGamers +
+        return "GameEntity{" +
+                "onlineGamers=" + onlineGamers +
+                ", gameCategories=" + gameCategories +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

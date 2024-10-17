@@ -1,0 +1,24 @@
+type Game {
+    id: ID
+    name: String
+    onlineGamers: Int
+    gameCategories: [GameCategory]
+}
+
+input CreateGameRequest {
+    name: String!
+    gameCategories: [GameCategory]
+}
+
+input UpdateGameRequest {
+    name: String!
+    gameCategories: [GameCategory]
+}
+
+enum GameCategory {
+    RPG
+    FPS
+    HACK_AND_SLASH
+    STRATEGY
+    CITY_BUILDER
+}

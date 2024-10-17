@@ -1,6 +1,7 @@
 package org.example.playtogether.core.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.example.playtogether.core.entities.user.UserEntity;
 import org.springframework.data.annotation.CreatedBy;
@@ -15,6 +16,7 @@ import java.util.UUID;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode
+@Data
 public abstract class BaseEntity {
 
     @Id

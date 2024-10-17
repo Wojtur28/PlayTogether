@@ -1,0 +1,7 @@
+type Mutation {
+    createGame(input: CreateGameRequest): Game
+    updateGame(id: ID!, input: UpdateGameRequest): Game
+    deleteGame(id: ID!): Boolean!
+
+    createUser(input: CreateUser): User
+}
