@@ -1,7 +1,6 @@
 package org.example.playtogether.config.security;
 
 import lombok.AllArgsConstructor;
-import org.example.playtogether.core.entities.user.UserEntity;
 import org.example.playtogether.core.entities.user.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

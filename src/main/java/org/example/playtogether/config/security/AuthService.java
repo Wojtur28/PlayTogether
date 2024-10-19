@@ -1,4 +1,3 @@
-/*
 package org.example.playtogether.config.security;
 
 import org.example.playtogether.web.dto.user.LoginRequest;
@@ -10,4 +9,3 @@ public interface AuthService {
 
     boolean register (RegisterRequest registerRequest);
 }
-*/

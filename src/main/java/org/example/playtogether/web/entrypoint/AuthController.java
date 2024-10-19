@@ -4,7 +4,7 @@ import graphql.GraphQLError;
 import graphql.schema.DataFetchingEnvironment;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import org.example.playtogether.config.security.AuthServiceImpl;
+import org.example.playtogether.config.security.AuthService;
 import org.example.playtogether.web.dto.user.LoginRequest;
 import org.example.playtogether.web.dto.user.LoginResponse;
 import org.example.playtogether.web.dto.user.RegisterRequest;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 @AllArgsConstructor
 public class AuthController {
 
-    private final AuthServiceImpl authService;
+    private final AuthService authService;
 
     @MutationMapping
     @PreAuthorize("permitAll()")

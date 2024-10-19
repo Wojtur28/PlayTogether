@@ -13,7 +13,7 @@ import java.util.Collections;
 
 @Service
 @AllArgsConstructor
-public class AuthServiceImpl {
+public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
