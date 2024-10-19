@@ -1,8 +1,9 @@
 package org.example.playtogether.core.usecase.user;
 
 import lombok.AllArgsConstructor;
-import org.example.playtogether.core.entities.user.UserEntity;
 import org.example.playtogether.core.entities.user.UserRepository;
+import org.example.playtogether.mapper.UserMapper;
+import org.example.playtogether.web.dto.user.UserResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,9 @@ import java.util.List;
 public class GetUsersUseCase {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public List<UserEntity> getUsers() {
-        return userRepository.findAll();
+    public List<UserResponse> getUsers() {
+        return userMapper.toUserResponse(userRepository.findAll());
     }
 }

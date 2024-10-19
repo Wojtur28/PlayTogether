@@ -20,7 +20,14 @@ security:
 
 logging:
   level:
-    .org.springframework.security: trace
+    org:
+      springframework:
+        security: trace
+    hibernate:
+      SQL: DEBUG
+      type:
+        descriptor:
+          sql: TRACE
 
 
 

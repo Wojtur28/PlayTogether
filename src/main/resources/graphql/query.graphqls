@@ -3,5 +3,6 @@ type Query {
     getGames: [Game]
     hello: String
 
-    getUser(id: ID!): User
+    getUser(id: ID!): User!
+    getUsers: [User]!
 }
