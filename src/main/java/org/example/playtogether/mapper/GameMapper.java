@@ -4,7 +4,6 @@ import org.example.playtogether.core.entities.game.GameEntity;
 import org.example.playtogether.web.dto.game.CreateGameRequest;
 import org.example.playtogether.web.dto.game.CreateGameResponse;
 import org.example.playtogether.web.dto.game.GameResponse;
-import org.example.playtogether.web.dto.game.GamesListResponse;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public interface GameMapper {
 
     GameEntity toEntity(CreateGameRequest createGameRequest);
 
-    List<GamesListResponse> toGamesListResponse(List<GameEntity> gameEntities);
+    List<GameResponse> toGameResponse(List<GameEntity> gameEntities);
 
     CreateGameResponse toCreateGameResponse(GameEntity gameEntity);
 }

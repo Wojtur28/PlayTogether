@@ -26,6 +26,6 @@ public class CommentEntity extends BaseEntity {
     private int toxicityRating;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity writtenFor;
 }

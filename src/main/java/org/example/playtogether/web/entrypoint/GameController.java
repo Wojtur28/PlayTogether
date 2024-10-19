@@ -24,13 +24,13 @@ public class GameController {
     private final UpdateGameUseCase updateGameUseCase;
     private final DeleteGameUseCase deleteGameUseCase;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @QueryMapping
-    public List<GamesListResponse> getGames() {
+    public List<GameResponse> getGames() {
         return getGamesUseCase.getGames();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @QueryMapping
     public GameResponse getGame(@Argument UUID id) {
         return getGameUseCase.getGame(id);

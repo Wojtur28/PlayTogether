@@ -6,6 +6,9 @@ import java.util.Set;
 import java.util.UUID;
 
 //TODO: Delete this and use GameResponse as a response if these records are the same
-public record CreateGameResponse(UUID id, String name, int onlineGamers, Set<GameCategory> gameCategories) {
+public record CreateGameResponse(UUID id,
+                                 String name,
+                                 int onlineGamers,
+                                 Set<GameCategory> gameCategories) {
 }
 

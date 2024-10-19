@@ -1,9 +1,15 @@
+#TODO: Refactor game schema
 type Game {
     id: ID
     name: String
     onlineGamers: Int
     gameCategories: [GameCategory]
 }
+
+input GameInput {
+    id: ID
+}
+
 
 input CreateGameRequest {
     name: String!

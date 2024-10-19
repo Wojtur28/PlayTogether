@@ -4,6 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.example.playtogether.core.entities.user.UserEntity;
 import org.example.playtogether.core.entities.user.UserRepository;
+import org.example.playtogether.mapper.UserMapper;
+import org.example.playtogether.web.dto.user.UserResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -13,9 +15,12 @@ import java.util.UUID;
 public class GetUserUseCase {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserEntity getUser(UUID userId) {
-        return userRepository.findById(userId)
+    public UserResponse getUser(UUID userId) {
+        UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id " + userId));
+
+        return userMapper.toUserResponse(user);
     }
 }
