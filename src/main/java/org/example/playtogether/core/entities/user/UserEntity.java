@@ -8,16 +8,22 @@ import lombok.NoArgsConstructor;
 import org.example.playtogether.core.entities.BaseEntity;
 import org.example.playtogether.core.entities.comment.CommentEntity;
 import org.example.playtogether.core.entities.game.GameEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity extends BaseEntity {
+public class UserEntity extends BaseEntity implements UserDetails {
 
     private String username;
 
@@ -54,6 +60,12 @@ public class UserEntity extends BaseEntity {
     @OneToMany(mappedBy = "writtenFor", cascade = CascadeType.ALL)
     private List<CommentEntity> comments;
 
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<Role> roles = new HashSet<>();
+
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -62,5 +74,42 @@ public class UserEntity extends BaseEntity {
                 ", password='" + password + '\'' +
                 ", toxicityLevel=" + toxicityLevel +
                 '}';
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.name()))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
     }
 }

@@ -12,3 +12,15 @@ spring:
     graphiql:
       enabled: true
     path: /graphql
+
+
+security:
+  jwt:
+    jwtExpirationDate: 3600000
+
+logging:
+  level:
+    .org.springframework.security: trace
+
+
+

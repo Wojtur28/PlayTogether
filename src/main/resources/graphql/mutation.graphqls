@@ -1,4 +1,9 @@
+directive @public on FIELD_DEFINITION
+
 type Mutation {
+    login(input: LoginInput): AuthResponse @public
+    register(input: RegisterInput): Boolean @public
+
     createGame(input: CreateGameRequest): Game
     updateGame(id: ID!, input: UpdateGameRequest): Game
     deleteGame(id: ID!): Boolean!
