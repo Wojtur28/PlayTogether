@@ -9,4 +9,7 @@ type Mutation {
     createUser(input: CreateUser): User
     updateUser(id: ID!, input: UpdateUserRequest): User
     deleteUser(id: ID!): Boolean
+
+    createComment(input: CreateCommentRequest): Comment
+    deleteComment(id: ID!): Boolean
 }

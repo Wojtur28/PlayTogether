@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 //TODO: Separate Requests and Responses records for different role: GameResponseAdmin, GameResponseUser...
+//TODO: Refactor gamesPlayed and comments type to dto
 public record UserUpdateRequest(String username,
                                 String email,
                                 int toxicityLevel,

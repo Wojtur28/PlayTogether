@@ -7,6 +7,10 @@ type User {
     gamesPlayed: [Game]
 }
 
+input UserInput {
+    id: ID
+}
+
 input CreateUser {
     username: String!
     email: String!

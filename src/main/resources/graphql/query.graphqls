@@ -5,4 +5,6 @@ type Query {
 
     getUser(id: ID!): User!
     getUsers: [User]!
+
+    getCommentsFromUser(userId: ID!): [Comment]!
 }

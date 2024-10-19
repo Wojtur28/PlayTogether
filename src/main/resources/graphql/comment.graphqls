@@ -1,0 +1,15 @@
+type Comment {
+    id: ID
+    content: String
+    skillRating: Int
+    likes: Int
+    toxicityRating: Int
+    writtenFor: User!
+}
+
+input CreateCommentRequest {
+    content: String!
+    skillRating: Int
+    toxicityRating: Int
+    writtenFor: UserInput!
+}
