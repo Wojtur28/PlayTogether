@@ -1,0 +1,20 @@
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input RegisterInput {
+    email: String!
+    password: String!
+    gender: Gender!
+}
+
+type AuthResponse {
+    accessToken: String!
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    OTHER
+}

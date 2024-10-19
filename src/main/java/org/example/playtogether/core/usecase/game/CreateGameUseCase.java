@@ -17,7 +17,8 @@ public class CreateGameUseCase {
     private final GameMapper gameMapper;
 
     public CreateGameResponse createGame(CreateGameRequest createGameRequest) {
-        GameEntity savedGame = gameRepository.save(gameMapper.toEntity(createGameRequest));
-        return gameMapper.toCreateGameResponse(savedGame);
+        GameEntity newGame = gameMapper.toEntity(createGameRequest);
+        gameRepository.save(newGame);
+        return gameMapper.toCreateGameResponse(newGame);
     }
 }
