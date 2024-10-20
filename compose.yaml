@@ -12,8 +12,8 @@ services:
       - postgres
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/playtogether_db
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+      SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
     ports:
       - "8080:8080"
 
@@ -22,8 +22,8 @@ services:
     container_name: playtogether_db
     environment:
       - POSTGRES_DB=playtogether_db
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+      - POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
       - POSTGRES_HOST_AUTH_METHOD=md5
     ports:
       - "5432:5432"
