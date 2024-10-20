@@ -52,20 +52,22 @@ jobs:
           script: |
             # Pull the latest image from Docker Hub
             docker pull wojtur/playtogether_app:latest
-            
+
             # Stop and remove the existing Docker container
             docker stop playtogether_app || true
             docker rm playtogether_app || true
-            
+
             # Check if any process is using port 8080 and kill it
             if lsof -i :8080 -t > /tmp/pid; then
               echo "Killing process running on port 8080..."
               kill -9 $(cat /tmp/pid)
             fi
-            
-            # Run the new container with the latest image
+
+            # Run the new container with memory and CPU limits
             docker run -d --name playtogether_app \
               --network=playtogether_net \
               -p 8080:8080 \
+              --memory=512m \
+              --cpus=1 \
               wojtur/playtogether_app:latest
           
