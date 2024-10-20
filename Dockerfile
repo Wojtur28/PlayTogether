@@ -8,8 +8,8 @@ WORKDIR /app
 COPY pom.xml /app/
 RUN mvn dependency:go-offline
 
-# Copy the rest of the application's source code
-COPY src /app/src
+# Copy the rest of the application's source code and resources
+COPY . /app/
 
 # Package the application
 RUN mvn package -DskipTests
