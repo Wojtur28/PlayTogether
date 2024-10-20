@@ -1,0 +1,54 @@
+name: CD Workflow
+
+on:
+  push:
+    branches:
+      - main  # Adjust based on your default branch
+
+jobs:
+  build-and-deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the latest code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Java (if needed for building)
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      # Build the Docker image with tags
+      - name: Build Docker image
+        run: |
+          IMAGE_NAME=your-docker-username/playtogether_app
+          IMAGE_TAG=${{ github.run_number }}
+          docker build -t $IMAGE_NAME:$IMAGE_TAG -t $IMAGE_NAME:latest .  
+
+      # Log in to Docker Hub
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_EMAIL }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Push the Docker image to Docker Hub
+      - name: Push Docker image
+        run: docker push wojtur/playtogether_app:latest
+
+      # Deploy to Server via SSH
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker pull wojtur/playtogether_app:latest
+            docker stop playtogether_app || true
+            docker rm playtogether_app || true
+            docker run -d --name playtogether_app --network=playtogether_net -p 8080:8080 wojtur/playtogether_app:latest
