@@ -49,12 +49,12 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          script: |
-            sudo docker pull wojtur/playtogether_app:latest
-            sudo docker stop playtogether_app || true
-            sudo docker rm playtogether_app || true
-            sudo docker run -d --name playtogether_app \
-              --network=playtogether_net \
-              -p 8080:8080 \
-              wojtur/playtogether_app:latest
+        script: |
+          docker pull wojtur/playtogether_app:latest
+          docker stop playtogether_app || true
+          docker rm playtogether_app || true
+          docker run -d --name playtogether_app \
+            --network=playtogether_net \
+            -p 8080:8080 \
+            wojtur/playtogether_app:latest
           
