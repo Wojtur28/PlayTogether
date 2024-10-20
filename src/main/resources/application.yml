@@ -23,11 +23,11 @@ logging:
     org:
       springframework:
         security: trace
-    hibernate:
-      SQL: DEBUG
-      type:
-        descriptor:
-          sql: TRACE
+#    hibernate:
+#      SQL: DEBUG
+#      type:
+#        descriptor:
+#          sql: TRACE
 
 
 
