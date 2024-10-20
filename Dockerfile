@@ -12,7 +12,7 @@ RUN mvn dependency:go-offline
 COPY . /app/
 
 # Package the application
-RUN mvn package -DskipTests
+RUN mvn clean package -DskipTests
 
 # Use a minimal JRE image for the final build
 FROM eclipse-temurin:21-jre-jammy
