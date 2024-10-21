@@ -1,5 +1,5 @@
 name: CD Workflow
-#
+
 on:
   push:
     branches:
@@ -63,11 +63,9 @@ jobs:
               kill -9 $(cat /tmp/pid)
             fi
 
-            # Run the new container with memory and CPU limits
+            # Run the new container
             docker run -d --name playtogether_app \
               --network=playtogether_net \
               -p 8080:8080 \
-              --memory=512m \
-              --cpus=1 \
+              -v /home/playtogether/application.yml:src/main/resources/application.yml \
               wojtur/playtogether_app:latest
-          

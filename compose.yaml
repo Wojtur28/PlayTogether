@@ -18,6 +18,8 @@ services:
       - "8080:8080"
     env_file:
       - ./secret.env
+    volumes:
+      - /home/playtogether/application.yml:src/main/resources/application.yml
 
   postgres:
     image: 'postgres:latest'

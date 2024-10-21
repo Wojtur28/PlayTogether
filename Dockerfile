@@ -25,4 +25,4 @@ COPY --from=build /app/target/PlayTogether-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
 
 # Command to run the application
-ENTRYPOINT ["java", "-Xmx256m", "-Xms128m", "-jar", "PlayTogether-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "PlayTogether-0.0.1-SNAPSHOT.jar"]
