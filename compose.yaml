@@ -19,7 +19,7 @@ services:
     env_file:
       - ./secret.env
     volumes:
-      - /home/playtogether/application.yml:src/main/resources/application.yml
+      - /home/playtogether/application.yml:/Users/Developer/IdeaProjects/PlayTogether/src/main/resources/application.yml
 
   postgres:
     image: 'postgres:latest'
