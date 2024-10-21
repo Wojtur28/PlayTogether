@@ -25,4 +25,4 @@ COPY --from=build /app/target/PlayTogether-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
 
 # Command to run the application with a custom application.yml location
-ENTRYPOINT ["java", "-jar", "PlayTogether-0.0.1-SNAPSHOT.jar", "--spring.config.location=file:/home/playtogether/application.yml"]
+ENTRYPOINT ["java", "-jar", "PlayTogether-0.0.1-SNAPSHOT.jar", "--spring.config.location=/home/playtogether/application.yml"]
