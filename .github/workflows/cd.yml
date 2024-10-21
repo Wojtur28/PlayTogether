@@ -65,7 +65,6 @@ jobs:
 
             # Run the new container
             docker run -d --name playtogether_app \
-              --network=playtogether_net \
+              -v /home/playtogether/application.yml:/home/playtogether/application.yml \
               -p 8080:8080 \
-              -v /home/playtogether/application.yml:/Users/Developer/IdeaProjects/PlayTogether/src/main/resources/application.yml \
               wojtur/playtogether_app:latest
