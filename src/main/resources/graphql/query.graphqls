@@ -1,10 +1,10 @@
 type Query {
     getGame(id: ID!): Game!
-    getGames: [Game]
+    getGames: [Game!]!
     hello: String
 
     getUser(id: ID!): User!
-    getUsers: [User]!
+    getUsers: [User!]!
 
-    getCommentsFromUser(userId: ID!): [Comment]!
+    getCommentsFromUser(userId: ID!): [Comment!]!
 }
