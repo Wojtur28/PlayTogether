@@ -21,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
 
     public String login(LoginRequest loginRequest) {
         UserEntity user = userRepository.findByEmail(loginRequest.email())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
+                .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + loginRequest.email()));
 
         if (!passwordEncoder.matches(loginRequest.password(), user.getPassword())) {
             throw new IllegalArgumentException("Invalid email or password");

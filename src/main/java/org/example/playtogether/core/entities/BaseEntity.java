@@ -37,8 +37,8 @@ public abstract class BaseEntity {
     private UserEntity modifiedBy;
 
     @CreatedDate
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedAt =  LocalDateTime.now();
 }

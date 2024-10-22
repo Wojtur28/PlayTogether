@@ -1,13 +1,11 @@
 package org.example.playtogether.core.entities.user;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.playtogether.core.entities.BaseEntity;
 import org.example.playtogether.core.entities.comment.CommentEntity;
 import org.example.playtogether.core.entities.game.GameEntity;
+import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -63,8 +61,15 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
+    @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
     private Set<Role> roles = new HashSet<>();
+
+    @ElementCollection(targetClass = Language.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_play_style", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "user_play_style")
+    @Enumerated(EnumType.STRING)
+    private Set<PlayStyle> playStyles;
 
     @Override
     public String toString() {
@@ -73,6 +78,12 @@ public class UserEntity extends BaseEntity implements UserDetails {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", toxicityLevel=" + toxicityLevel +
+                ", gender=" + gender +
+                ", languageWritten=" + languageWritten +
+                ", languageSpoken=" + languageSpoken +
+                ", gamesPlayed=" + gamesPlayed +
+                ", comments=" + comments +
+                ", roles=" + roles +
                 '}';
     }
 
