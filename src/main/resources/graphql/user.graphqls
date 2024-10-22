@@ -1,17 +1,16 @@
-#TODO: Refactor user schema
 type User {
-    id: ID
-    username: String
-    email: String
-    gender: Gender
-    gamesPlayed: [Game]
+    id: ID!
+    username: String!
+    email: String!
+    gender: Gender!
+    gamesPlayed: [Game!]!
 }
 
 input UserInput {
-    id: ID
+    id: ID!
 }
 
-input CreateUser {
+input CreateUserRequest {
     username: String!
     email: String!
     password: String!
@@ -21,10 +20,10 @@ input CreateUser {
 input UpdateUserRequest {
     username: String!
     email: String!
-    toxicityLeve: Int!
+    toxicityLevel: Int!
     gender: Gender!
-    languageWritten: [Language]!
-    languageSpoken: [Language]!
+    languageWritten: [Language!]!
+    languageSpoken: [Language!]!
     gamesPlayed: [GameInput]!
 }
 

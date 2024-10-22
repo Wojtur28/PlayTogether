@@ -1,24 +1,22 @@
-#TODO: Refactor game schema
 type Game {
-    id: ID
-    name: String
+    id: ID!
+    name: String!
     onlineGamers: Int
-    gameCategories: [GameCategory]
+    gameCategories: [GameCategory!]!
 }
 
 input GameInput {
-    id: ID
+    id: ID!
 }
-
 
 input CreateGameRequest {
     name: String!
-    gameCategories: [GameCategory]
+    gameCategories: [GameCategory!]!
 }
 
 input UpdateGameRequest {
     name: String!
-    gameCategories: [GameCategory]
+    gameCategories: [GameCategory!]!
 }
 
 enum GameCategory {

@@ -1,15 +1,15 @@
 type Mutation {
-    login(input: LoginInput): AuthResponse
-    register(input: RegisterInput): Boolean
+    login(input: LoginInput!): AuthResponse!
+    register(input: RegisterInput!): Boolean!
 
-    createGame(input: CreateGameRequest): Game
-    updateGame(id: ID!, input: UpdateGameRequest): Game
-    deleteGame(id: ID!): Boolean
+    createGame(input: CreateGameRequest!): Game!
+    updateGame(id: ID!, input: UpdateGameRequest!): Game!
+    deleteGame(id: ID!): Boolean!
 
-    createUser(input: CreateUser): User
-    updateUser(id: ID!, input: UpdateUserRequest): User
-    deleteUser(id: ID!): Boolean
+    createUser(input: CreateUserRequest!): User!
+    updateUser(id: ID!, input: UpdateUserRequest!): User!
+    deleteUser(id: ID!): Boolean!
 
-    createComment(input: CreateCommentRequest): Comment
-    deleteComment(id: ID!): Boolean
+    createComment(input: CreateCommentRequest!): Comment!
+    deleteComment(id: ID!): Boolean!
 }
