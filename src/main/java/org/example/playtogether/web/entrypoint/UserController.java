@@ -7,7 +7,6 @@ import org.example.playtogether.core.usecase.user.GetUsersUseCase;
 import org.example.playtogether.core.usecase.user.UpdateUserUseCase;
 import org.example.playtogether.web.dto.user.UserResponse;
 import org.example.playtogether.web.dto.user.UserUpdateRequest;
-import org.example.playtogether.web.dto.user.UserUpdateResponse;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -40,7 +39,7 @@ public class UserController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @MutationMapping
-    public UserUpdateResponse updateUser(@Argument UUID id, @Argument("input") UserUpdateRequest userUpdateRequest) {
+    public UserResponse updateUser(@Argument UUID id, @Argument("input") UserUpdateRequest userUpdateRequest) {
         return updateUserUseCase.updateUser(id, userUpdateRequest);
     }
 

@@ -1,10 +1,14 @@
 package org.example.playtogether.web.dto.comment;
 
-import org.example.playtogether.web.dto.user.UserInput;
+import org.example.playtogether.web.dto.user.UserResponse;
 
-public record CommentResponse(String content,
+import java.util.UUID;
+
+public record CommentResponse(UUID id,
+                              String content,
                               int skillRating,
                               int likes,
                               int toxicityRating,
-                              UserInput writtenFor) {
+                              UserResponse writtenFor) {
 }
+

@@ -5,8 +5,8 @@ import org.example.playtogether.core.entities.game.GameEntity;
 import org.example.playtogether.core.entities.game.GameRepository;
 import org.example.playtogether.mapper.GameMapper;
 import org.example.playtogether.web.dto.game.CreateGameRequest;
-import org.example.playtogether.web.dto.game.CreateGameResponse;
 
+import org.example.playtogether.web.dto.game.GameResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,9 +16,9 @@ public class CreateGameUseCase {
     private final GameRepository gameRepository;
     private final GameMapper gameMapper;
 
-    public CreateGameResponse createGame(CreateGameRequest createGameRequest) {
+    public GameResponse createGame(CreateGameRequest createGameRequest) {
         GameEntity newGame = gameMapper.toEntity(createGameRequest);
         gameRepository.save(newGame);
-        return gameMapper.toCreateGameResponse(newGame);
+        return gameMapper.toGameResponse(newGame);
     }
 }

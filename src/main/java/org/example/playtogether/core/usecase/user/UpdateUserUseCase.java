@@ -4,9 +4,10 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.example.playtogether.core.entities.user.UserEntity;
 import org.example.playtogether.core.entities.user.UserRepository;
+import org.example.playtogether.mapper.GameMapper;
 import org.example.playtogether.mapper.UserMapper;
+import org.example.playtogether.web.dto.user.UserResponse;
 import org.example.playtogether.web.dto.user.UserUpdateRequest;
-import org.example.playtogether.web.dto.user.UserUpdateResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -17,8 +18,9 @@ public class UpdateUserUseCase {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final GameMapper gameMapper;
 
-    public UserUpdateResponse updateUser(UUID id, UserUpdateRequest userUpdateRequest) {
+    public UserResponse updateUser(UUID id, UserUpdateRequest userUpdateRequest) {
         UserEntity updatedUser = userRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("User not found"));
 
@@ -28,10 +30,10 @@ public class UpdateUserUseCase {
         updatedUser.setGender(userUpdateRequest.gender());
         updatedUser.setLanguageWritten(userUpdateRequest.languageWritten());
         updatedUser.setLanguageSpoken(userUpdateRequest.languageSpoken());
-        updatedUser.setGamesPlayed(userUpdateRequest.gamesPlayed());
+        updatedUser.setGamesPlayed(gameMapper.toEntity(userUpdateRequest.gamesPlayed()));
 
         userRepository.save(updatedUser);
 
-        return userMapper.toUserUpdateResponse(updatedUser);
+        return userMapper.toUserResponse(updatedUser);
     }
 }
