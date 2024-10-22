@@ -38,7 +38,7 @@ public class GameController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @MutationMapping
-    public CreateGameResponse createGame(@Argument("input") CreateGameRequest createGameRequest) {
+    public GameResponse createGame(@Argument("input") CreateGameRequest createGameRequest) {
         return createGameUseCase.createGame(createGameRequest);
     }
 
