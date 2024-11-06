@@ -12,4 +12,6 @@ type Mutation {
 
     createComment(input: CreateCommentRequest!): Comment!
     deleteComment(id: ID!): Boolean!
+
+    fetchGames(limit: Int!, offset: Int!): [GameIgdb]
 }
