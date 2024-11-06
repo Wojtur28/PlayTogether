@@ -1,0 +1,30 @@
+type GameIgdb {
+    id: Int
+    name: String
+    genres: [GenreIgdb]
+    platforms: [PlatformIgdb]
+    themes: [ThemeIgdb]
+    screenshots: [ScreenshotsIgdb]
+    rating: Float
+}
+
+type GenreIgdb {
+    id: Int
+    name: String
+}
+
+type PlatformIgdb {
+    id: Int
+    name: String
+}
+
+type ThemeIgdb {
+    id: Int
+    name: String
+}
+
+type ScreenshotsIgdb {
+    id: Int
+    imageId: String
+#    TODO: Create mapper to map image_id to imageId
+}
