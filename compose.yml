@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_database_playtogether
+    environment:
+      POSTGRES_DB: playtogether_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - playtogether_network
+
+  app:
+    image: wojtur/playtogether_app:latest
+    container_name: playtogether_app
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/playtogether_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: secret
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./application.yml:/config/application.yml
+    networks:
+      - playtogether_network
+
+volumes:
+  postgres_data:
+
+networks:
+  playtogether_network:
+    external: true
