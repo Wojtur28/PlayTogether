@@ -6,34 +6,33 @@ import org.example.playtogether.core.usecase.comment.DeleteCommentUseCase;
 import org.example.playtogether.core.usecase.comment.GetCommentsFromUserUseCase;
 import org.example.playtogether.web.dto.comment.CommentResponse;
 import org.example.playtogether.web.dto.comment.CreateCommentRequest;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.MutationMapping;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/comments")
 public class CommentController {
 
     private final CreateCommentUseCase createCommentUseCase;
     private final GetCommentsFromUserUseCase getCommentsFromUserUseCase;
     private final DeleteCommentUseCase deleteCommentUseCase;
 
-    @QueryMapping
-    public List<CommentResponse> getCommentsFromUser(@Argument UUID userId) {
+    @GetMapping("/fromUser/{userId}")
+    public List<CommentResponse> getCommentsFromUser(@PathVariable UUID userId) {
         return getCommentsFromUserUseCase.getCommentsFromUser(userId);
     }
 
-    @MutationMapping
-    public CommentResponse createComment(@Argument("input") CreateCommentRequest createCommentRequest) {
+    @PostMapping
+    public CommentResponse createComment(@RequestBody CreateCommentRequest createCommentRequest) {
         return createCommentUseCase.createComment(createCommentRequest);
     }
 
-    @MutationMapping
-    public boolean deleteComment(@Argument UUID id) {
+    @DeleteMapping("/{id}")
+    public boolean deleteComment(@PathVariable UUID id) {
         return deleteCommentUseCase.deleteComment(id);
     }
 }

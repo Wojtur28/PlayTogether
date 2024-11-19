@@ -1,9 +1,0 @@
-type GameClient {
-    id: ID
-    name: String
-    category: String
-    themes: [String]
-    genres: [String]
-    tags: [String]
-    url: String
-}

@@ -1,11 +1,13 @@
 package org.example.playtogether.config.security;
 
 import org.example.playtogether.web.dto.user.LoginRequest;
+import org.example.playtogether.web.dto.user.LoginResponse;
 import org.example.playtogether.web.dto.user.RegisterRequest;
+import org.example.playtogether.web.dto.user.RegisterResponse;
 
 public interface AuthService {
 
-    String login (LoginRequest loginRequest);
+    LoginResponse login (LoginRequest loginRequest);
 
-    boolean register (RegisterRequest registerRequest);
+    RegisterResponse register (RegisterRequest registerRequest);
 }
