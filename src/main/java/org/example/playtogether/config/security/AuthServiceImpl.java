@@ -5,7 +5,9 @@ import org.example.playtogether.core.entities.user.Role;
 import org.example.playtogether.core.entities.user.UserEntity;
 import org.example.playtogether.core.entities.user.UserRepository;
 import org.example.playtogether.web.dto.user.LoginRequest;
+import org.example.playtogether.web.dto.user.LoginResponse;
 import org.example.playtogether.web.dto.user.RegisterRequest;
+import org.example.playtogether.web.dto.user.RegisterResponse;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
 
-    public String login(LoginRequest loginRequest) {
+    public LoginResponse login(LoginRequest loginRequest) {
         UserEntity user = userRepository.findByEmail(loginRequest.email())
                 .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + loginRequest.email()));
 
@@ -27,10 +29,10 @@ public class AuthServiceImpl implements AuthService {
             throw new IllegalArgumentException("Invalid email or password");
         }
 
-        return jwtTokenProvider.generateToken(user.getEmail());
+        return new LoginResponse(jwtTokenProvider.generateToken(user.getEmail()));
     }
 
-    public boolean register(RegisterRequest registerRequest) {
+    public RegisterResponse register(RegisterRequest registerRequest) {
         if (userRepository.findByEmail(registerRequest.email()).isPresent()) {
             throw new IllegalArgumentException("User already exists with this email");
         }
@@ -43,6 +45,6 @@ public class AuthServiceImpl implements AuthService {
         newUser.setRoles(Collections.singleton(Role.ROLE_USER));
         userRepository.save(newUser);
 
-        return true;
+        return new RegisterResponse(newUser.getEmail());
     }
 }
