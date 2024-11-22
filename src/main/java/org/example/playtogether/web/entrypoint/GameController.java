@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.playtogether.core.usecase.game.*;
 import org.example.playtogether.web.dto.game.*;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Slf4j
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping("/games")
 public class GameController {

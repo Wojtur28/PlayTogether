@@ -7,13 +7,12 @@ import org.example.playtogether.core.usecase.user.GetUsersUseCase;
 import org.example.playtogether.core.usecase.user.UpdateUserUseCase;
 import org.example.playtogether.web.dto.user.UserResponse;
 import org.example.playtogether.web.dto.user.UserUpdateRequest;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {

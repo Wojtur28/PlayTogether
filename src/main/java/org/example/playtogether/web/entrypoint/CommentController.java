@@ -6,13 +6,12 @@ import org.example.playtogether.core.usecase.comment.DeleteCommentUseCase;
 import org.example.playtogether.core.usecase.comment.GetCommentsFromUserUseCase;
 import org.example.playtogether.web.dto.comment.CommentResponse;
 import org.example.playtogether.web.dto.comment.CreateCommentRequest;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
 @AllArgsConstructor
 @RequestMapping("/comments")
 public class CommentController {
